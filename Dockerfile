@@ -23,5 +23,3 @@ RUN pip install --upgrade pip && \
     pip install chromedriver-binary~=$(/usr/bin/google-chrome --version \
         | perl -pe 's/([^0-9]+)([0-9]+\.[0-9]+).+/$2/g')
 
-
-

@@ -4,7 +4,6 @@ services:
         # ビルドする場合はDockerfileの置き場所を以下に記述(相対)
         build:
            context: .
-           dockerfile: dockerfile_req2lib
         container_name: req2lib
         tty: true
         environment:
