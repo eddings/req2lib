@@ -99,7 +99,6 @@ def main():
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     sleep(1)
     driver.execute_script("window.scrollTo(0, 0);")
-    sleep(1)
 
     wish_books = []
 
@@ -135,11 +134,14 @@ def main():
     driver.find_element_by_xpath('//*[@id="opac_login_disp"]/p[2]/input[1]').click()
 
     # 今までのリクエストを確認
-    driver.get('https://lib.s.kaiyodai.ac.jp/opac/bok_req/?lang=0&reqCode=list&phasecd=ALL&range=A&oh_flg=1')
-    selector = driver.find_element_by_xpath('//*[@id="example_length"]/select')
-    Select(selector).select_by_value('200') # 200冊表示
-    requested_books = driver.find_elements_by_xpath('//td[contains(@class, "max_width bokreq_tr")]')
-    requested_titles = [requested_book.text for requested_book in requested_books]
+    try:
+        driver.get('https://lib.s.kaiyodai.ac.jp/opac/bok_req/?lang=0&reqCode=list&phasecd=ALL&range=A&oh_flg=1')
+        selector = driver.find_element_by_xpath('//*[@id="example_length"]/select')
+        Select(selector).select_by_value('200') # 200冊表示
+        requested_books = driver.find_elements_by_xpath('//td[contains(@class, "max_width bokreq_tr")]')
+        requested_titles = [requested_book.text for requested_book in requested_books]
+    except:
+        requested_titles = []
 
     # 次に検索
     for wish_book in wish_books:
